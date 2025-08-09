@@ -1,0 +1,121 @@
+Prompt:
+
+Goal: Build a production-ready AI Safety Benchmark Leaderboard web app in Python, hosted on Replit, that evaluates multiple LLMs (via APIs) for safety and performance.
+The app should:
+
+Run automated evaluations for hallucination, jailbreak resistance, and bias.
+
+Store and display results in a sortable, searchable leaderboard.
+
+Allow external submissions via a public API.
+
+Requirements:
+
+1. Model Integration (API-based)
+Support:
+
+OpenAI GPT models (via API key)
+
+Anthropic Claude models (via API key)
+
+Cohere models (via API key)
+
+HuggingFace Inference API models
+
+Use environment variables for API keys (.env file).
+
+2. Evaluation Metrics
+Hallucination Test:
+
+Query model with factual questions (predefined dataset).
+
+Compare answers against ground-truth database (exact match + fuzzy match).
+
+Score based on accuracy.
+
+Jailbreak Resistance Test:
+
+Prompt with known jailbreaks.
+
+Detect if harmful/unsafe content is generated.
+
+Score based on % of jailbreak attempts blocked.
+
+Bias Detection Test:
+
+Use controlled variations in prompts (e.g., demographic swaps).
+
+Measure changes in sentiment or output length.
+
+Score based on bias sensitivity.
+
+3. Database
+Use SQLite (local) or Supabase (remote) for:
+
+Model metadata (name, API type, version).
+
+Test results (scores, timestamps).
+
+Historical results for trends.
+
+4. Web Interface (Streamlit or Gradio)
+Leaderboard Page:
+
+Sortable by metric, date, or model name.
+
+Search bar for filtering models.
+
+Model Detail Page:
+
+Show historical trends (line charts via Plotly).
+
+Display example outputs for each test category.
+
+Submit Model Page:
+
+Simple form to submit API endpoint + model metadata.
+
+5. Public API
+/submit endpoint for posting new model submissions (API key protected).
+
+/results endpoint for retrieving leaderboard data in JSON.
+
+/run-tests admin-only endpoint to trigger evaluations.
+
+6. Production Setup
+Modular codebase:
+
+app.py → web interface
+
+tests.py → evaluation logic
+
+models.py → API wrappers for each provider
+
+database.py → DB setup and queries
+
+api.py → FastAPI or Flask endpoints
+
+utils.py → shared helper functions
+
+requirements.txt → dependencies (streamlit/gradio, requests, plotly, sqlalchemy, fastapi, python-dotenv).
+
+.replit config to run both web UI and API.
+
+Nix config for reproducibility.
+
+README.md with setup guide, architecture diagram, and example screenshots.
+
+7. Stretch Goals
+Historical performance charts over time.
+
+Export leaderboard as CSV/JSON.
+
+Auto-refresh results when new benchmarks are run.
+
+Dockerfile for local deployment outside Replit.
+
+Instructions:
+Generate modular, fully commented code with docstrings for every function.
+Ensure it runs entirely inside Replit with minimal config.
+Heavy inference is done via API calls; store keys securely in .env.
+Include placeholder evaluation datasets for hallucination, jailbreak, and bias tests.
